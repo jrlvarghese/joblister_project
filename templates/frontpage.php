@@ -70,9 +70,6 @@ include 'inc/header.php';
 
 </main>
 
-<footer class="container">
-  <p>&copy; Company 2017-2020</p>
-</footer>
 <?php
 // include footer file
 include 'inc/footer.php';
