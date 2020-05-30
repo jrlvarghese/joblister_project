@@ -3,11 +3,12 @@ include_once 'config/init.php';
 ?>
 
 <?php
-// instantiate class Job - refer to Job.php
+// instantiate Job object
 $job = new Job;
 
 $template = new Template('templates/frontpage.php');
-// using method getAllJobs from Job class
+$template->title = 'New Jobs';
+// pass Job object contents into template
 $template->jobs = $job->getAllJobs();
-
 echo $template;
+

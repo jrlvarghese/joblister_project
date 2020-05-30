@@ -16,7 +16,9 @@ include 'inc/header.php';
 
 <div class="container">
     <!-- Example row of columns -->
+    
     <?php foreach($jobs as $job): ?>
+    <!-- Example row of columns -->
     <div class="row">
         <div class="col-md-10">
             <h2><?php echo $job->jobTitle; ?></h2>
@@ -27,7 +29,6 @@ include 'inc/header.php';
             <a class="btn btn-default" href="#">View more</a>
         </div> -->
     </div> <!-- /row -->
-    <hr>
     <?php endforeach; ?>
     
 
