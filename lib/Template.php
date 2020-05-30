@@ -20,7 +20,7 @@ class Template{
     // when used as a string
     public function __toString(){
         // extract variables
-        extract($this->$vars);
+        extract($this->vars);
         // get the path
         chdir(dirname($this->template));
         // output the template after starting the buffer
