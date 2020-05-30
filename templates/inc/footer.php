@@ -1,1 +1,4 @@
-footer.php
+
+FOOTER 
+</body>
+</html>
