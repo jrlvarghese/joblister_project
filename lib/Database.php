@@ -5,71 +5,70 @@ class Database{
     // Following variables are set in config.php file
     private $host = DB_HOST;
     private $user = DB_USER;
-    private $passwrd = DB_PSSWRD;
-    private $dbName = DB_NAME;
+    private $password = DB_PSSWRD;
+    private $dbname = DB_NAME;
 
-    private $dbHandler;
+    private $dbh;
     private $error;
-    private $statment;
+    private $stmt;
 
     // constructor
     public function __construct(){
         // Set DSN
-        $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbName;
+        $dsn = 'mysql:host='. $this->host .';dbname='. $this->dbname;
         // set options 
         $options = array(
             PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRORMODE => PDO::ERRMODE_EXCEPTION
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
 
         // PDO instance
         try{
-            $this->dbHanlder = new PDO($dsn, $this->user, $this->passwrd, $options);
+            $this->dbh = new PDO($dsn, $this->user, $this->password, $options);
         }catch(PDOException $e){
             $this->error = $e->getMessage();
         }
     }
 
     // query method 
-    public function query($queryString){
-        $this->statement = $this->dbHandler->prepare($queryString);
+    public function query($query){
+        $this->stmt = $this->dbh->prepare($query);
     }
 
     // bind method to bind the values
-    public function bind($parameter, $value, $type=null){
+    public function bind($param, $value, $type = null){
         if(is_null($type)){
-            switch(true){
-                case is_int($value):
-                    $type = PDO::PARAM_INT;
-                    break;
-                case is_bool($value):
-                    $type = PDO::PARAM_BOOL;
-                    break;
-                case is_null($value):
-                    $type = PDO::PARAM_NULL;
-                    break;
-                default:
-                    $type = PDO::PARAM_STR;
-            }
+                switch(true){
+                    case is_int ( $value ) :
+                        $type = PDO::PARAM_INT;
+                        break;
+                    case is_bool ( $value ) :
+                        $type = PDO::PARAM_BOOL;
+                        break;
+                    case is_null ( $value ) :
+                        $type = PDO::PARAM_NULL;
+                        break;
+                    default :
+                        $type = PDO::PARAM_STR;
+                }
         }
-        $this->statement->bindValue($parameter, $value, $type);
-    }
-
+        $this->stmt->bindValue($param, $value, $type);
+}
     // execute 
     public function execute(){
-        return $this->statement->execute();
+        return $this->stmt->execute();
     }
 
     // geting the full result set
     public function resultSet(){
         $this->execute();
-        return $this->statement->fetchAll(PDO::FETCH_OBJECT);
+        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     // getting a single result
     public function resultSingle(){
         $this->execute();
-        return $this->statement->fetch(PDO::FETCH_OBJECT);
+        return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
 }
