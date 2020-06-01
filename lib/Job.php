@@ -19,4 +19,12 @@ class Job{
         $results = $this->db->resultSet();
         return $results;
     }
+
+    // method to get cateogories
+    public function getCategories(){
+        // query all categories from table 'jobcategory'
+        $this->db->query("SELECT * FROM jobcategory");
+        $results = $this->db->resultSet();
+        return $results;
+    }
 }
