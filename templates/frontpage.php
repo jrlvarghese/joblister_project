@@ -9,7 +9,7 @@ include 'inc/header.php';
 <div class="jumbotron">
     <div class="container">
         <h1 class="display-3">Find Jobs</h1>
-        <form>
+        <form method="GET" action="index.php">
             <select name="category" class="form-control">
                 <option value="0">Select Category</option>
                 <?php foreach($categories as $category): ?>
@@ -18,6 +18,8 @@ include 'inc/header.php';
                 </option>
                 <?php endforeach; ?>
             </select>
+            <br>
+            <input type="submit" class="btn btn-lg btn-success" value="FIND" style="float: right;">
         </form>
     </div>
 </div>
