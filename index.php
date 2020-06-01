@@ -12,6 +12,8 @@ $category = isset($_GET['category'])?$_GET['category']:null;
 if($category){
     // if category is set with a variable
     $template->jobs = $job->getByCategory($category);
+    // set the title appended with category
+    $template->title = $job->getCategoryName($category)->catName;
 
 }else{
     // if there is no query by category

@@ -26,7 +26,7 @@ include 'inc/header.php';
 
 <div class="container">
     <!-- Example row of columns -->
-    
+    <h3><?php echo $title; ?></h3>
     <?php foreach($jobs as $job): ?>
     <!-- Example row of columns -->
     <div class="row">

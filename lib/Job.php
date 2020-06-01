@@ -39,4 +39,12 @@ class Job{
         $results  = $this->db->resultSet();
         return $results;
     }
+
+    // method to get category name
+    public function getCategoryName($category_id){
+        $this->db->query("SELECT catName FROM jobcategory WHERE id=:category_id");
+        $this->db->bind(':category_id', $category_id);
+        $row = $this->db->resultSingle();
+        return $row;
+    }
 }
