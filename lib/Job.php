@@ -34,8 +34,9 @@ class Job{
                             FROM jobs
                             INNER JOIN jobcategory
                             ON jobs.categoryId=jobcategory.id
-                            WHERE jobs.categoryId=$category
+                            WHERE jobs.categoryId=:category
                             ORDER BY postDate DESC");
+        $this->db->bind(':category', $category);
         $results  = $this->db->resultSet();
         return $results;
     }
@@ -46,5 +47,12 @@ class Job{
         $this->db->bind(':category_id', $category_id);
         $row = $this->db->resultSingle();
         return $row;
+    }
+
+    // another method to run the same function 'getCategoryName
+    public function getCatName($catId){
+        $this->db->query("SELECT catName FROM jobcategory WHERE id=$catId");
+        $result = $this->db->resultSingle();
+        return $result;
     }
 }
