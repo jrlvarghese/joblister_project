@@ -55,4 +55,12 @@ class Job{
         $result = $this->db->resultSingle();
         return $result;
     }
+
+    // function to get job details
+    public function getJobDetails($job_id){
+        $this->db->query("SELECT * FROM jobs WHERE id=:job_id");
+        $this->db->bind(':job_id', $job_id);
+        $result = $this->db->resultSingle();
+        return $result;
+    }
 }
