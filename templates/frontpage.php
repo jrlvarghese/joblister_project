@@ -33,7 +33,7 @@ include 'inc/header.php';
         <div class="col-md-10">
             <h2><?php echo $job->jobTitle; ?></h2>
             <p><?php echo $job->description; ?></p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="job.php?id=<?php echo $job->id; ?>" role="button">View details &raquo;</a></p>
         </div>
         <!-- <div class="col-md-2">
             <a class="btn btn-default" href="#">View more</a>
