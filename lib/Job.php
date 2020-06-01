@@ -27,4 +27,16 @@ class Job{
         $results = $this->db->resultSet();
         return $results;
     }
+
+    // method to get jobs by category
+    public function getByCategory($category){
+        $this->db->query("SELECT jobs.*, jobcategory.catName AS cname
+                            FROM jobs
+                            INNER JOIN jobcategory
+                            ON jobs.categoryId=jobcategory.id
+                            WHERE jobs.categoryId=$category
+                            ORDER BY postDate DESC");
+        $results  = $this->db->resultSet();
+        return $results;
+    }
 }
