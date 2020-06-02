@@ -6,28 +6,21 @@ include_once 'config/init.php';
 // instantiate Job object
 $job = new Job;
 $template = new Template('templates/job-single.php');
-
+// get the id of job
 $job_id = isset($_GET['id'])?$_GET['id']:null;
-
+// update the template with job
 $template->job = $job->getJobDetails($job_id);
 
-// // check the category passed
-// $category = isset($_GET['category'])?$_GET['category']:null;
-// if($category){
-//     // if category is set with a variable
-//     $template->jobs = $job->getByCategory($category);
-//     // set the title appended with category
-//     $template->title = $job->getCategoryName($category)->catName;
-
-// }else{
-//     // if there is no query by category
-//     $template->title = 'New Jobs';
-//     // pass Job object contents into template
-//     $template->jobs = $job->getAllJobs();
-// }
-
-// // assign categories
-// $template->categories = $job->getCategories();
-
+// for deleting a job
+// check the id of the job to be deleted
+if(isset($_POST['del_id'])){
+    $del_id = $_POST['del_id'];
+    if($job->deleteJob($del_id)){
+        // redirect page after deleting successufuly
+        redirect("index.php","Successfuly deleted listing", "success");
+    }else{
+        redirect("index.php", "Failed to delete listing", "error");
+    }
+}
 echo $template;
 
