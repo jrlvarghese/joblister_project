@@ -12,7 +12,7 @@ include 'inc/header.php';
     <!-- Form for inputing data -->
     <div class="form-group">
         <label>Category</label>
-        <select class="form-control" name="category">
+        <select class="form-control" name="categoryId">
         <option value="0">Select Category</option>
         <!-- load categories from database -->
         <?php foreach($categories as $category): ?>

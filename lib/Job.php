@@ -65,20 +65,20 @@ class Job{
     }
 
     // method to insert data
-    public function insertData($d){
+    public function insertJob($d){
         // insert query
-        $this->query("INSERT INTO jobs 
+        $this->db->query("INSERT INTO jobs 
                     (categoryId,company,jobTitle,description,salary,location,contactUser,contactEmail) 
                     VALUES(:categoryId,:company,:jobTitle,:description,:salary,:location,:contactUser,:contactEmail)");
         // bind data
-        $this->bind(':categoryId',$d['categoryId']);
-        $this->bind(':company',$d['company']);
-        $this->bind(':jobTitle',$d['jobTitle']);
-        $this->bind(':description',$d['description']);
-        $this->bind(':salary',$d['salary']);
-        $this->bind(':location',$d['location']);
-        $this->bind(':contactUser',$d['contactUser']);
-        $this->bind(':contactEmail',$d['contactEmail']);
+        $this->db->bind(':categoryId',$d['categoryId']);
+        $this->db->bind(':company',$d['company']);
+        $this->db->bind(':jobTitle',$d['jobTitle']);
+        $this->db->bind(':description',$d['description']);
+        $this->db->bind(':salary',$d['salary']);
+        $this->db->bind(':location',$d['location']);
+        $this->db->bind(':contactUser',$d['contactUser']);
+        $this->db->bind(':contactEmail',$d['contactEmail']);
         // execute
         if($this->db->execute()){
             return true;

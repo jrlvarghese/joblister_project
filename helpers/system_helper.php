@@ -1,19 +1,19 @@
 <?php
-function redirect($page=false, $message=null,$message_type=null){
+function redirect($page=FALSE, $message=NULL,$message_type=NULL){
     if(is_string($page)){
         $location = $page;
     }else{
         $location = $_SERVER['SCRIPT_NAME'];
     }
 
-    if($message != null){
+    if($message != NULL){
         // set message, 
         // first have to redirect then to display message
         // that's why message is stored in a session variable
         $_SESSION['message'] = $message;
     }
 
-    if($message_type != null){
+    if($message_type != NULL){
         $_SESSION['message_type'] = $message_type;
     }
 
