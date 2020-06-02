@@ -86,4 +86,15 @@ class Job{
             return false;
         }
     }
+
+    // method to delete listing
+    public function deleteJob($id){
+        $this->db->query("DELETE FROM jobs WHERE id=$id");
+        // execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
