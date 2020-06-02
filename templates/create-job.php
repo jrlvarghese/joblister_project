@@ -28,7 +28,7 @@ include 'inc/header.php';
     </div>
     <div class="form-group">
         <label>Job Description</label>
-        <input type="text" class="form-control" name="description">
+        <textarea type="text" class="form-control" name="description"></textarea>
     </div>
     <div class="form-group">    
         <label>Salary</label>
@@ -46,6 +46,7 @@ include 'inc/header.php';
         <label>Contact Email</label>
         <input type="text" class="form-control" name="contactEmail">
     </div>
+    <input type="submit" class="btn btn-primary" value="Submit" name="submit"> 
 </form>
 </div>
 <?php

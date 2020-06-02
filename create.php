@@ -6,24 +6,28 @@ include_once 'config/init.php';
 // instantiate Job object
 $job = new Job;
 $template = new Template('templates/create-job.php');
-
-// // check the category passed
-// $category = isset($_GET['category'])?$_GET['category']:null;
-// if($category){
-//     // if category is set with a variable
-//     $template->jobs = $job->getByCategory($category);
-//     // set the title appended with category
-//     $template->title = $job->getCategoryName($category)->catName;
-
-// }else{
-//     // if there is no query by category
-//     $template->title = 'New Jobs';
-//     // pass Job object contents into template
-//     $template->jobs = $job->getAllJobs();
-// }
-
-// assign categories
+// load categories from database
 $template->categories = $job->getCategories();
+
+// check whether the form is submitted or not
+if($_POST['submit']){
+    $data = array();
+    $data['company'] = $_POST['company'];
+    $data['jobTitle'] = $_POST['jobTitle'];
+    $data['categoryId'] = $_POST['category'];
+    $data['description'] = $_POST['description'];
+    $data['salary'] = $_POST['salary'];
+    $data['location'] = $_POST['location'];
+    $data['contactUser'] = $_POST['contactUser'];
+    $data['contactEmail'] = $_POST['contactEmail'];
+    // insert data and check if that was successful or not
+    // give proper redirect message too
+    if($job->insertData($data)){
+        redirect('index.php','Your job has been listed.', 'success');
+    }else{
+        redirect('create.php', 'Something went wrong.', 'error');
+    }
+}
 
 echo $template;
 

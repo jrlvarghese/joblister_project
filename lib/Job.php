@@ -63,4 +63,27 @@ class Job{
         $result = $this->db->resultSingle();
         return $result;
     }
+
+    // method to insert data
+    public function insertData($d){
+        // insert query
+        $this->query("INSERT INTO jobs 
+                    (categoryId,company,jobTitle,description,salary,location,contactUser,contactEmail) 
+                    VALUES(:categoryId,:company,:jobTitle,:description,:salary,:location,:contactUser,:contactEmail)");
+        // bind data
+        $this->bind(':categoryId',$d['categoryId']);
+        $this->bind(':company',$d['company']);
+        $this->bind(':jobTitle',$d['jobTitle']);
+        $this->bind(':description',$d['description']);
+        $this->bind(':salary',$d['salary']);
+        $this->bind(':location',$d['location']);
+        $this->bind(':contactUser',$d['contactUser']);
+        $this->bind(':contactEmail',$d['contactEmail']);
+        // execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
