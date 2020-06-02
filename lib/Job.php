@@ -97,4 +97,34 @@ class Job{
             return false;
         }
     }
+
+    // method to update job
+    public function updateJob($id, $d){
+        $this->db->query("UPDATE jobs SET
+                        categoryId = :categoryId,
+                        company = :company,
+                        jobTitle = :jobTitle,
+                        description = :description,
+                        salary = :salary,
+                        location = :location,
+                        contactUser = :contactUser,
+                        contactEmail = :contactEmail
+                        WHERE id=$id");
+
+        // bind data
+        $this->db->bind(':categoryId',$d['categoryId']);
+        $this->db->bind(':company',$d['company']);
+        $this->db->bind(':jobTitle',$d['jobTitle']);
+        $this->db->bind(':description',$d['description']);
+        $this->db->bind(':salary',$d['salary']);
+        $this->db->bind(':location',$d['location']);
+        $this->db->bind(':contactUser',$d['contactUser']);
+        $this->db->bind(':contactEmail',$d['contactEmail']);
+        // execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
