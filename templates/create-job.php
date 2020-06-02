@@ -19,7 +19,9 @@ include 'inc/header.php';
             <option value="<?php echo $category->id; ?>">
             <?php echo $category->catName; ?></option>
         <?php endforeach; ?>
+        </select>
     </div>
+    
     <div class="form-group">
         <label>Job Title</label>
         <input type="text" class="form-control" name="jobTitle">
